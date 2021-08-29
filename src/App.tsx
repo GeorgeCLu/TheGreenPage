@@ -13,6 +13,7 @@ import {
   Link,
   Redirect,
   useHistory,
+  BrowserRouter as Router,
 } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import Home from './components/Home';
@@ -106,6 +107,7 @@ const App = () => {
   };
 
   return (
+    <Router>
     <Container>
       <div>
         {(message && (
@@ -266,6 +268,7 @@ const App = () => {
         </div>
       </div>
     </Container>
+    </Router>
   );
 };
 
