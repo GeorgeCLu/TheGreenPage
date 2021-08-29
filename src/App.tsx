@@ -226,7 +226,7 @@ const App = () => {
             &nbsp;
             &nbsp;
             &nbsp;
-            <img alt="icon" src={icon} height="50" width="50" />
+            <img alt="icon" src={icon} height="50" width="50" onClick={ (event) => event.preventDefault()}/>
           </Toolbar>
         </AppBar>
 
