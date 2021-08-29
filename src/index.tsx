@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   BrowserRouter as Router,
 } from 'react-router-dom';
 import App from './App';
@@ -18,11 +19,9 @@ const client = new ApolloClient({
 })
 
 ReactDOM.render(
-  <React.StrictMode>
     <ApolloProvider client={client}>  
       <App />
-    </ApolloProvider>
-  </React.StrictMode>, 
+    </ApolloProvider>, 
   document.getElementById('root'),
 );
 /*
