@@ -2,7 +2,8 @@
 
 This is a WIP demonstration app of a Yellow pages clone using GraphQL.
 
-The frontend is written in Typescript with React and is deployed as a Azure Static Web App here:
+The frontend is written in Typescript with React and uses Apollo Client.
+It is deployed as a Azure Static Web App here:
 https://witty-tree-028be3200.azurestaticapps.net/
 
 The backend GraphQL server code uses Node.js and Apollo-server and is deployed as a Azure Function App and connects to a document database in MongoDB Atlas. 
