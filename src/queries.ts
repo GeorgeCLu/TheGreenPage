@@ -1,4 +1,4 @@
-import { gql  } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 export const ALL_LISTINGS = gql`
   query {
@@ -11,7 +11,7 @@ export const ALL_LISTINGS = gql`
       description
     }
   }
-`
+`;
 export const FIND_LISTING = gql`
   query findListingByName($nameToSearch: String!) {
     findListing(name: $nameToSearch) {
@@ -27,7 +27,7 @@ export const FIND_LISTING = gql`
       }
     }
   }
-`
+`;
 export const CREATE_LISTING = gql`
   mutation createListing($name: String!, $street: String!, $city: String!, $phone: String, $emailAddress:String!, $category:String!, $description:String!) {
     addListing(
@@ -51,7 +51,7 @@ export const CREATE_LISTING = gql`
       }
     }
   }
-`
+`;
 
 export const REMOVE_LISTING = gql`
   mutation deleteListing($id: string!) {
@@ -70,7 +70,7 @@ export const REMOVE_LISTING = gql`
       }
     }
   }
-`
+`;
 
 export const SEARCH_LISTING = gql`
   query findListingById($id: ID!) {
@@ -89,7 +89,7 @@ export const SEARCH_LISTING = gql`
       }
     }
   }
-`
+`;
 
 export const EDIT_NUMBER = gql`
   mutation editNumber($name: String!, $phone: String!) {
@@ -106,7 +106,7 @@ export const EDIT_NUMBER = gql`
       id
     }
   }
-`
+`;
 export const EDIT_EMAILADDRESS = gql`
   mutation editEmailAddress($name: String!, $emailAddress: String!) {
     editEmailAddress(name: $name, emailAddress: $emailAddress)  {
@@ -122,7 +122,7 @@ export const EDIT_EMAILADDRESS = gql`
       id
     }
   }
-`
+`;
 
 export const EDIT_LISTING = gql`
 mutation editListing($name: String!, $street: String!, $city: String!, $phone: String, $emailAddress:String!, $category:String!, $description:String!) {
@@ -147,4 +147,4 @@ mutation editListing($name: String!, $street: String!, $city: String!, $phone: S
     id
   }
 }
-`
+`;

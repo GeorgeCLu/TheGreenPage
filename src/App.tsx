@@ -1,7 +1,6 @@
-/* eslint-disable import/extensions */
-/* eslint-disable  */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events, import/extensions */
 import React, { useEffect, useState } from 'react';
-// eslint-disable-next-line no-unused-vars
 import {
   Container,
   Button,
@@ -69,13 +68,12 @@ const App = () => {
         }
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result.data]);
 
   useEffect(() => {
     if (user && user !== "''") {
       getListing({ variables: { nameToSearch: user } });
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
   }, [user]);
 
   /// //////////////////////////////////////////////////////

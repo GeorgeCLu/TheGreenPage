@@ -1,30 +1,29 @@
-
-import React from 'react'
+import React from 'react';
 import {
-  Grid
+  Grid,
 } from '@material-ui/core';
 
 interface NotifyMessageProp {
     errorMessage: string|null,
   }
-  
-  const NotifyMessage = ( props: NotifyMessageProp ) => {
-    if ( !props.errorMessage ) {
-      return (<div></div>)
-    }
-    return (
-      <div style={{color: 'red'}}>
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-         {props.errorMessage}
-        </Grid>
-      </div>
-    )
-  }
 
-  export default NotifyMessage
+const NotifyMessage = (props: NotifyMessageProp) => {
+  if (!props.errorMessage) {
+    return (<div />);
+  }
+  return (
+    <div style={{ color: 'red' }}>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        {props.errorMessage}
+      </Grid>
+    </div>
+  );
+};
+
+export default NotifyMessage;

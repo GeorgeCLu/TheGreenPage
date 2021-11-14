@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { useLazyQuery } from '@apollo/client'
+import React, { useState, useEffect } from 'react';
+import { useLazyQuery } from '@apollo/client';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
 
-import { FIND_LISTING } from '../queries'
+import { FIND_LISTING } from '../queries';
 import ListingProp from '../common/listing';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -20,37 +20,37 @@ interface ListingsProp {
   listings: ListingProp[]|null,
 }
 
-const Listings = (props:ListingsProp ) => {
-  const [listing, setListing] = useState<ListingProp|null>(null)
-  const [getListing, result] = useLazyQuery(FIND_LISTING)
-  const [expand, setExpand] = useState<boolean>(false)
+const Listings = (props:ListingsProp) => {
+  const [listing, setListing] = useState<ListingProp|null>(null);
+  const [getListing, result] = useLazyQuery(FIND_LISTING);
+  const [expand, setExpand] = useState<boolean>(false);
 
   const showListing = (name: string) => {
-    getListing({ variables: { nameToSearch: name } })
-  }
+    getListing({ variables: { nameToSearch: name } });
+  };
 
   const open = (name: string) => {
-    setExpand(true)
-    showListing(name)
-  }
+    setExpand(true);
+    showListing(name);
+  };
 
   const close = () => {
-    setExpand(false)
-    setListing(null)
-  }
+    setExpand(false);
+    setListing(null);
+  };
 
-  const handleIconClicks  = (name: string) => {
+  const handleIconClicks = (name: string) => {
     open(name);
-}
+  };
 
   useEffect(() => {
     if (expand && result.data) {
-      setListing(result.data.findListing)
+      setListing(result.data.findListing);
     }
-  }, [result.data, expand])
+  }, [result.data, expand]);
 
   if (listing) {
-    return(
+    return (
       <div>
         <Grid
           container
@@ -59,14 +59,18 @@ const Listings = (props:ListingsProp ) => {
           alignItems="center"
           justifyContent="center"
         >
-        <h2>{listing?.name}</h2>
-        <h3>{listing?.category}</h3>
-        <div>{listing?.address.street} {listing?.address.city}</div>
-        <div>{listing?.phone}</div>
-        <div>{listing?.emailAddress}</div>
-        <div>{listing?.description}</div>
-        <br/>
-        <Button
+          <h2>{listing?.name}</h2>
+          <h3>{listing?.category}</h3>
+          <div>
+            {listing?.address.street}
+            {' '}
+            {listing?.address.city}
+          </div>
+          <div>{listing?.phone}</div>
+          <div>{listing?.emailAddress}</div>
+          <div>{listing?.description}</div>
+          <br />
+          <Button
             style={{
               borderRadius: 20,
               backgroundColor: '#c7c8ca',
@@ -80,16 +84,16 @@ const Listings = (props:ListingsProp ) => {
             onClick={() => {
               close();
             }}
-        >
+          >
             Close
           </Button>
         </Grid>
       </div>
-    )
+    );
   }
-  
+
   if (!props.listings) {
-    return(
+    return (
       <div>
         <Grid
           container
@@ -98,11 +102,11 @@ const Listings = (props:ListingsProp ) => {
           alignItems="center"
           justifyContent="center"
         >
-        <h2>Listings</h2>
-        None found
+          <h2>Listings</h2>
+          None found
         </Grid>
       </div>
-    )
+    );
   }
 
   return (
@@ -114,24 +118,24 @@ const Listings = (props:ListingsProp ) => {
         alignItems="center"
         justifyContent="center"
       >
-      <h2>Listings</h2>
-      {props.listings.map((p: ListingProp) =>
-        <div key={p.name}>
-          {p.category}
-          <Button
-            color="primary"
-            onClick={() => {
-              handleIconClicks(p.name);
-            }}
+        <h2>Listings</h2>
+        {props.listings.map((p: ListingProp) => (
+          <div key={p.name}>
+            {p.category}
+            <Button
+              color="primary"
+              onClick={() => {
+                handleIconClicks(p.name);
+              }}
             >
               {p.name}
-          </Button>
-          <br/>
-        </div>  
-      )}
+            </Button>
+            <br />
+          </div>
+        ))}
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default Listings
+export default Listings;
