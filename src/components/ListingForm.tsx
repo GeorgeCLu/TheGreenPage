@@ -210,7 +210,7 @@ const ListingForm = ( props: ListingFormProps) => {
           <br />
         </form>
 
-        <h2>Delete information button WIP</h2>
+        <h2>Delete information button to be added</h2>
         
       </Grid>
     </div>
