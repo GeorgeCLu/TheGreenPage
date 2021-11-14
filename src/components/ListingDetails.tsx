@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import ListingForm from './ListingForm';
-import { ALL_LISTINGS } from '../queries';
-import NotifyMessage from './NotifyMessage';
+import React, { useState } from 'react'
+import { useQuery } from '@apollo/client'
+import ListingForm from './ListingForm'
+import { ALL_LISTINGS } from '../queries'
+import NotifyMessage from './NotifyMessage'
 
 interface ListingDetailsProps {
   user: string,
@@ -19,21 +19,21 @@ interface ListingDetailsProps {
 }
 
 const ListingDetails = (props: ListingDetailsProps) => {
-  const [errorMessage, setErrorMessage] = useState<string|null>(null);
-  const result = useQuery(ALL_LISTINGS);
+  const [errorMessage, setErrorMessage] = useState<string|null>(null)
+  const result = useQuery(ALL_LISTINGS)
 
-  if (result.loading) {
-    return <div>loading...</div>;
+  if (result.loading)  {
+    return <div>loading...</div>
   }
 
   const notify = (message: string|null) => {
-    setErrorMessage(message);
+    setErrorMessage(message)
     setTimeout(() => {
-      setErrorMessage(null);
-    }, 10000);
-  };
+      setErrorMessage(null)
+    }, 10000)
+  }
 
-  if (result.data) {
+  if (result.data){
     // const listings = result.data.allListings as ListingProp[];
     return (
       <div>
@@ -51,9 +51,9 @@ const ListingDetails = (props: ListingDetailsProps) => {
           userCategory={props.userCategory}
         />
       </div>
-    );
-  }
-  return (
+    )
+   }
+   return (
     <div>
       <br />
       <NotifyMessage errorMessage={errorMessage} />
@@ -69,7 +69,7 @@ const ListingDetails = (props: ListingDetailsProps) => {
         userCategory={props.userCategory}
       />
     </div>
-  );
+   )
 };
 
 export default ListingDetails;

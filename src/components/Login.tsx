@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, ChangeEvent, FormEvent } from 'react';
 import {
   TextField,
@@ -9,15 +10,13 @@ import {
 } from 'react-router-dom';
 
 interface LoginProps {
-  // eslint-disable-next-line no-unused-vars
   onLogin: ((user: string) => void),
   typedUser : string,
-  // eslint-disable-next-line no-unused-vars
   typedUserHandle: ((user: string) => void),
   typedPassword: string,
-  // eslint-disable-next-line no-unused-vars
   typedPasswordHandle: ((user: string) => void);
 }
+
 
 const Login = (props: LoginProps) => {
   const history = useHistory();
@@ -28,9 +27,7 @@ const Login = (props: LoginProps) => {
     if (
       props.typedUser.length >= 1
       && props.typedUser.length <= 25
-      // && ((user !== 'admin' && user !== 'Admin' && user !== 'ADMIN')
-      // || ((user === 'admin' || user === 'Admin' || user === 'ADMIN')
-      // && password === 'password'))
+      // && ((user !== 'admin' && user !== 'Admin' && user !== 'ADMIN')|| ((user === 'admin' || user === 'Admin' || user === 'ADMIN') && password === 'password'))
       && props.typedPassword.length >= 1
     ) {
       setIsFormValid(true);
@@ -52,10 +49,12 @@ const Login = (props: LoginProps) => {
     props.typedUserHandle(event.target.value);
   };
 
+
   const handlePassword = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     props.typedPasswordHandle(event.target.value);
   };
+
 
   return (
     <div>
