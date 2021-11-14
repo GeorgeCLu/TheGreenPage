@@ -24,7 +24,6 @@ interface ListingFormProps {
 
 // eslint-disable-next-line react/function-component-definition
 const ListingForm = (props: ListingFormProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // eslint-disable-next-line no-unused-vars
   const [name, setName] = useState(props.user);
   const [phone, setPhone] = useState(props.userPhone);
@@ -85,7 +84,6 @@ const ListingForm = (props: ListingFormProps) => {
     });
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // eslint-disable-next-line no-unused-vars
   const deleteUserListing = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
