@@ -5,9 +5,9 @@ import React from 'react';
 
 const Home = () => (
   <div>
-    <h2 style={{display: "flex", justifyContent: "center", alignItems: "center"}}>The Green Page</h2>
-    <p style={{display: "flex", justifyContent: "center", alignItems: "center"}}>Find businesses in the LISTING tab.</p>
-    <p style={{display: "flex", justifyContent: "center", alignItems: "center"}}>Login to add and edit your own information.</p>
+    <h2 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>The Green Page</h2>
+    <p style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Find businesses in the LISTING tab.</p>
+    <p style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Login to add and edit your own information.</p>
   </div>
 );
 
