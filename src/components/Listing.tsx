@@ -16,13 +16,14 @@ const Listing = () => {
     return <div>loading...</div>;
   }
 
-  // eslint-disable-next-line no-unused-vars
+ /*
   const notify = (message: string|null) => {
     setErrorMessage(message);
     setTimeout(() => {
       setErrorMessage(null);
     }, 5000);
   };
+*/
 
   if (result.data) {
     const listings = result.data.allListings as ListingProp[];
