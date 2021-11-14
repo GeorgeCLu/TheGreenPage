@@ -2,7 +2,7 @@ interface Address {
     street: string,
     city: string
   }
-  
+
 export default interface ListingProp {
     name: string,
     phone: string|null,
@@ -11,4 +11,5 @@ export default interface ListingProp {
     id: string,
     category: string,
     description:string,
+  // eslint-disable-next-line semi
   }
