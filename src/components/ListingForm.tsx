@@ -5,7 +5,7 @@ import {
   Button,
   Grid
 } from '@material-ui/core';
-import { ALL_LISTINGS, CREATE_LISTING, FIND_LISTING, EDIT_LISTING } from '../queries';
+import { ALL_LISTINGS, CREATE_LISTING, FIND_LISTING, EDIT_LISTING, REMOVE_LISTING, } from '../queries';
 
 interface ListingFormProps {
   setError: ((message: string|null) => void),
@@ -46,6 +46,13 @@ const ListingForm = ( props: ListingFormProps) => {
     }
   })
 
+  const [ deleteListing] = useMutation(REMOVE_LISTING, {
+    refetchQueries: [  {query: ALL_LISTINGS}, {query: FIND_LISTING, variables: { nameToSearch: name }}],
+    onError: (error) => {
+      props.setError(error_string.concat(error.graphQLErrors[0].message))
+    }
+  })
+
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try{
@@ -63,6 +70,15 @@ const ListingForm = ( props: ListingFormProps) => {
     props.setError("Edited details added");
     editListing({
       variables: { name, phone, street, city, emailAddress, category, description }
+    })
+  }
+
+  const deleteUserListing = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    props.setError("Listing Deleted");
+    console.log('Clicked delete');
+    deleteListing({
+      variables: { name }
     })
   }
 
@@ -192,6 +208,9 @@ const ListingForm = ( props: ListingFormProps) => {
           </Grid>
           <br />
         </form>
+
+        <h2>Delete information button WIP</h2>
+        
       </Grid>
     </div>
     )
