@@ -73,6 +73,7 @@ const ListingForm = ( props: ListingFormProps) => {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const deleteUserListing = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     props.setError("Listing Deleted");
