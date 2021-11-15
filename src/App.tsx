@@ -17,7 +17,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useApolloClient } from '@apollo/client';
 import Home from './components/Home';
 import Login from './components/Login';
 import Listing from './components/Listing';
@@ -26,6 +26,7 @@ import icon from './assets/icon.png';
 import { FIND_LISTING } from './queries';
 
 const App = () => {
+  const client = useApolloClient();
   const history = useHistory();
   const [user, setUser] = useState<string|null>(null);
   const [message, setMessage] = useState<string|null>(null);
@@ -110,19 +111,24 @@ const App = () => {
     history.push('/');
   };
 
-  const listingClick = () => {
-    console.log('listingggg');
-  };
-
-  const refreshUserListing = () => {
+  // placeholder function
+  const deleteUserListing = () => {
+    // console.log('delete user listing');
     setUserId('');
     setUserName('');
+    setUserPhone(''); // can be null
     setUserEmailAddress('');
     setUserStreet('');
     setUserCity('');
-    setUserCategory('');
     setUserDescription('');
-    setUserPhone('');
+    setUserCategory('');
+  };
+
+  // refresh listings query
+  const clickListing = async () => {
+    await client.refetchQueries({
+      include: "active",
+    });
   };
 
   return (
@@ -164,7 +170,7 @@ const App = () => {
               }}
               component={Link}
               to="/listing"
-              onClick={listingClick}
+              onClick={clickListing}
             >
               Listing
             </Button>
@@ -266,7 +272,7 @@ const App = () => {
                 userCity={userCity}
                 userDescription={userDescription}
                 userCategory={userCategory}
-                refreshUserListing={refreshUserListing}
+                deleteUserListing={deleteUserListing}
               />
             ) : <Redirect to="/login" />}
           </Route>

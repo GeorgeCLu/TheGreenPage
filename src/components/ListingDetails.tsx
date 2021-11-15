@@ -16,7 +16,7 @@ interface ListingDetailsProps {
   userCity: string,
   userDescription: string,
   userCategory:string,
-  refreshUserListing: (() => void)
+  deleteUserListing:(() => void),
 }
 
 const ListingDetails = (props: ListingDetailsProps) => {
@@ -50,7 +50,7 @@ const ListingDetails = (props: ListingDetailsProps) => {
           userCity={props.userCity}
           userDescription={props.userDescription}
           userCategory={props.userCategory}
-          refreshUserListing={props.refreshUserListing}
+          deleteUserListing={props.deleteUserListing}
         />
       </div>
     );
@@ -69,7 +69,7 @@ const ListingDetails = (props: ListingDetailsProps) => {
         userCity={props.userCity}
         userDescription={props.userDescription}
         userCategory={props.userCategory}
-        refreshUserListing={props.refreshUserListing}
+        deleteUserListing={props.deleteUserListing}
       />
     </div>
   );

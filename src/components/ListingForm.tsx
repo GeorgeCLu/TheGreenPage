@@ -9,6 +9,7 @@ import {
 import {
   ALL_LISTINGS, CREATE_LISTING, FIND_LISTING, EDIT_LISTING, REMOVE_LISTING,
 } from '../queries';
+import { useApolloClient } from '@apollo/client';
 
 interface ListingFormProps {
   // eslint-disable-next-line no-unused-vars
@@ -21,11 +22,12 @@ interface ListingFormProps {
   userCity: string,
   userDescription: string,
   userCategory: string,
-  refreshUserListing: (() => void)
+  deleteUserListing:(() => void),
 }
 
 // eslint-disable-next-line react/function-component-definition
 const ListingForm = (props: ListingFormProps) => {
+  const client = useApolloClient();
   // eslint-disable-next-line no-unused-vars
   const [name, setName] = useState(props.user);
   const [phone, setPhone] = useState(props.userPhone);
@@ -91,7 +93,7 @@ const ListingForm = (props: ListingFormProps) => {
     event.preventDefault();
     props.setError('Listing Deleted');
     // eslint-disable-next-line no-console
-    console.log('Clicked delete');
+    // console.log('Clicked delete');
     deleteListing({
       variables: { name },
     });
@@ -101,7 +103,10 @@ const ListingForm = (props: ListingFormProps) => {
     setEmailAddress('');
     setDescription('');
     setCategory('');
-    props.refreshUserListing();
+    props.deleteUserListing();
+    // await client.refetchQueries({
+    //   include: "active",
+    // });
   };
 
   const handlePhone = (event: ChangeEvent<HTMLInputElement>) => {
