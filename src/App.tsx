@@ -53,7 +53,7 @@ const App = () => {
   const [userDescription, setUserDescription] = useState('');
 
   const [getListing, result] = useLazyQuery(FIND_LISTING, {
-    fetchPolicy: 'no-cache'
+    fetchPolicy: 'no-cache',
   });
 
   useEffect(() => {
@@ -110,71 +110,69 @@ const App = () => {
     history.push('/');
   };
 
+  const listingClick = () => {
+    console.log('listingggg');
+  };
+
+  const refreshUserListing = () => {
+    setUserId('');
+    setUserName('');
+    setUserEmailAddress('');
+    setUserStreet('');
+    setUserCity('');
+    setUserCategory('');
+    setUserDescription('');
+    setUserPhone('');
+  };
+
   return (
-      <Container>
-        <div>
-          {(message && (
+    <Container>
+      <div>
+        {(message && (
           <Alert severity="success">
             {message}
           </Alert>
-          )
+        )
   )}
-        </div>
-        <div>
-          <AppBar position="static" style={{ background: '#27b970' }}>
-            <Toolbar>
-              <Button
-                style={{
-                  padding: '12px 18px',
-                  fontSize: '16px',
-                  color: '#DEE3E3',
-                  borderRadius: 10,
-                  width: 90,
-                  height: 70,
-                }}
-                color="primary"
-                component={Link}
-                to="/"
-              >
-                home
-              </Button>
-              <Button
-                style={{
-                  padding: '12px 18px',
-                  fontSize: '16px',
-                  color: '#DEE3E3',
-                  borderRadius: 10,
-                  width: 90,
-                  height: 70,
-                }}
-                component={Link}
-                to="/listing"
-              >
-                Listing
-              </Button>
-              {userId
-                ? (
-                  <div
-                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                  >
-                    <Button
-                      style={{
-                        padding: '12px 18px',
-                        fontSize: '16px',
-                        color: '#DEE3E3',
-                        borderRadius: 10,
-                        width: 90,
-                        height: 70,
-                      }}
-                      color="primary"
-                      component={Link}
-                      to="/details"
-                    >
-                      Edit
-                    </Button>
-                  </div>
-                )
-                : (
+      </div>
+      <div>
+        <AppBar position="static" style={{ background: '#27b970' }}>
+          <Toolbar>
+            <Button
+              style={{
+                padding: '12px 18px',
+                fontSize: '16px',
+                color: '#DEE3E3',
+                borderRadius: 10,
+                width: 90,
+                height: 70,
+              }}
+              color="primary"
+              component={Link}
+              to="/"
+            >
+              home
+            </Button>
+            <Button
+              style={{
+                padding: '12px 18px',
+                fontSize: '16px',
+                color: '#DEE3E3',
+                borderRadius: 10,
+                width: 90,
+                height: 70,
+              }}
+              component={Link}
+              to="/listing"
+              onClick={listingClick}
+            >
+              Listing
+            </Button>
+            {userId && userId !== ''
+              ? (
+                <div
+                  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                >
                   <Button
                     style={{
                       padding: '12px 18px',
@@ -188,90 +186,109 @@ const App = () => {
                     component={Link}
                     to="/details"
                   >
-                    Add
+                    Edit
                   </Button>
-                )}
-              {user
-                ? (
-                  <div>
-                    <Button
-                      style={{
-                        padding: '12px 18px',
-                        fontSize: '12px',
-                        color: '#DEE3E3',
-                        borderRadius: 10,
-                        width: 90,
-                        height: 70,
-                      }}
-                      onClick={logout}
-                    >
-                      {user}
-                      {' '}
-                      logout
-                    </Button>
-                  </div>
-                )
-                : (
+                </div>
+              )
+              : (
+                <Button
+                  style={{
+                    padding: '12px 18px',
+                    fontSize: '16px',
+                    color: '#DEE3E3',
+                    borderRadius: 10,
+                    width: 90,
+                    height: 70,
+                  }}
+                  color="primary"
+                  component={Link}
+                  to="/details"
+                >
+                  Add
+                </Button>
+              )}
+            {user
+              ? (
+                <div>
                   <Button
                     style={{
                       padding: '12px 18px',
-                      fontSize: '16px',
+                      fontSize: '12px',
                       color: '#DEE3E3',
                       borderRadius: 10,
                       width: 90,
                       height: 70,
                     }}
-                    component={Link}
-                    to="/login"
+                    onClick={logout}
                   >
-                    login
+                    {user}
+                    {' '}
+                    logout
                   </Button>
-                )}
+                </div>
+              )
+              : (
+                <Button
+                  style={{
+                    padding: '12px 18px',
+                    fontSize: '16px',
+                    color: '#DEE3E3',
+                    borderRadius: 10,
+                    width: 90,
+                    height: 70,
+                  }}
+                  component={Link}
+                  to="/login"
+                >
+                  login
+                </Button>
+              )}
             &nbsp;
             &nbsp;
             &nbsp;
             &nbsp;
-              <img alt="icon" src={icon} height="50" width="50" onClick={(event) => event.preventDefault()} />
-            </Toolbar>
-          </AppBar>
+            <img alt="icon" src={icon} height="50" width="50" onClick={(event) => event.preventDefault()} />
+          </Toolbar>
+        </AppBar>
 
-          <Switch>
-            <Route path="/listing">
-              <Listing />
-            </Route>
-            <Route path="/details">
-              {user ? (
-                <ListingDetails
-                  user={user}
-                  userId={userId}
-                  userPhone={userPhone}
-                  userEmailAddress={userEmailAddress}
-                  userStreet={userStreet}
-                  userCity={userCity}
-                  userDescription={userDescription}
-                  userCategory={userCategory}
-                />
-              ) : <Redirect to="/login" />}
-            </Route>
-            <Route path="/login">
-              <Login
-                onLogin={login}
-                typedUser={loginUser}
-                typedUserHandle={handleLoginUser}
-                typedPassword={loginPassword}
-                typedPasswordHandle={handleLoginPassword}
+        <Switch>
+          <Route path="/listing">
+            <Listing />
+          </Route>
+          <Route path="/details">
+            {user ? (
+              <ListingDetails
+                user={user}
+                userId={userId}
+                userPhone={userPhone}
+                userEmailAddress={userEmailAddress}
+                userStreet={userStreet}
+                userCity={userCity}
+                userDescription={userDescription}
+                userCategory={userCategory}
+                refreshUserListing={refreshUserListing}
               />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-          <div>
-            <br />
-            <em>Let your fingers do the scrolling!</em>
-          </div>
+            ) : <Redirect to="/login" />}
+          </Route>
+          <Route path="/login">
+            <Login
+              onLogin={login}
+              typedUser={loginUser}
+              typedUserHandle={handleLoginUser}
+              typedPassword={loginPassword}
+              typedPasswordHandle={handleLoginPassword}
+            />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+        <div>
+          <br />
+          <em>Let your fingers do the scrolling!</em>
         </div>
-      </Container>
+      </div>
+    </Container>
   );
 };
 

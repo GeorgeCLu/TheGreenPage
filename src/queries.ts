@@ -52,26 +52,6 @@ export const CREATE_LISTING = gql`
     }
   }
 `
-
-export const REMOVE_LISTING = gql`
-  mutation deleteListing($id: string!) {
-    deleteListing(
-      id: $id
-    ) {
-      name
-      phone
-      id
-      emailAddress
-      category
-      description
-      address {
-        street
-        city
-      }
-    }
-  }
-`
-
 export const SEARCH_LISTING = gql`
   query findListingById($id: ID!) {
     findListingById(
@@ -147,4 +127,22 @@ mutation editListing($name: String!, $street: String!, $city: String!, $phone: S
     id
   }
 }
+`
+export const REMOVE_LISTING = gql`
+  mutation deleteListing($name: String!) {
+    deleteListing(
+      name: $name,
+    ) {
+      name
+      phone
+      id
+      emailAddress
+      category
+      description
+      address {
+        street
+        city
+      }
+    }
+  }
 `

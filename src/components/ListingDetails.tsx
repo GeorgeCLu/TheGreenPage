@@ -15,7 +15,8 @@ interface ListingDetailsProps {
   userStreet: string,
   userCity: string,
   userDescription: string,
-  userCategory:string
+  userCategory:string,
+  refreshUserListing: (() => void)
 }
 
 const ListingDetails = (props: ListingDetailsProps) => {
@@ -49,6 +50,7 @@ const ListingDetails = (props: ListingDetailsProps) => {
           userCity={props.userCity}
           userDescription={props.userDescription}
           userCategory={props.userCategory}
+          refreshUserListing={props.refreshUserListing}
         />
       </div>
     );
@@ -67,6 +69,7 @@ const ListingDetails = (props: ListingDetailsProps) => {
         userCity={props.userCity}
         userDescription={props.userDescription}
         userCategory={props.userCategory}
+        refreshUserListing={props.refreshUserListing}
       />
     </div>
   );

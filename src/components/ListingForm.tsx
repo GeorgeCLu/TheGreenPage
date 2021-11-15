@@ -21,6 +21,7 @@ interface ListingFormProps {
   userCity: string,
   userDescription: string,
   userCategory: string,
+  refreshUserListing: (() => void)
 }
 
 // eslint-disable-next-line react/function-component-definition
@@ -94,6 +95,13 @@ const ListingForm = (props: ListingFormProps) => {
     deleteListing({
       variables: { name },
     });
+    setPhone('');
+    setStreet('');
+    setCity('');
+    setEmailAddress('');
+    setDescription('');
+    setCategory('');
+    props.refreshUserListing();
   };
 
   const handlePhone = (event: ChangeEvent<HTMLInputElement>) => {
@@ -220,7 +228,32 @@ const ListingForm = (props: ListingFormProps) => {
             <br />
           </form>
 
-          <h2>Delete information button to be added</h2>
+          <h2>Delete information</h2>
+          <form onSubmit={deleteUserListing}>
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Button
+                style={{
+                  borderRadius: 20,
+                  backgroundColor: '#c7c8ca',
+                  padding: '5px 10px',
+                  fontSize: '15px',
+                  color: '#292526',
+                }}
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Delete
+              </Button>
+            </Grid>
+            <br />
+          </form>
 
         </Grid>
       </div>
