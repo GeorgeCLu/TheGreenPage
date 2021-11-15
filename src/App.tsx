@@ -1,7 +1,8 @@
-/* eslint-disable import/extensions */
-/* eslint-disable  */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events,  */
+// need to delete above before committing
+
 import React, { useEffect, useState } from 'react';
-// eslint-disable-next-line no-unused-vars
 import {
   Container,
   Button,
@@ -14,7 +15,6 @@ import {
   Link,
   Redirect,
   useHistory,
-  BrowserRouter as Router,
 } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import { useLazyQuery } from '@apollo/client';
@@ -43,6 +43,7 @@ const App = () => {
   /// /////////////////////////////////////////////////////////
   const [userId, setUserId] = useState('');
   // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userName, setUserName] = useState('');
   const [userPhone, setUserPhone] = useState(''); // can be null
   const [userEmailAddress, setUserEmailAddress] = useState('');
@@ -51,7 +52,9 @@ const App = () => {
   const [userCategory, setUserCategory] = useState('');
   const [userDescription, setUserDescription] = useState('');
 
-  const [getListing, result] = useLazyQuery(FIND_LISTING);
+  const [getListing, result] = useLazyQuery(FIND_LISTING, {
+    fetchPolicy: 'no-cache'
+  });
 
   useEffect(() => {
     // console.log(result.data)
@@ -69,13 +72,13 @@ const App = () => {
         }
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result.data]);
 
   useEffect(() => {
     if (user && user !== "''") {
       getListing({ variables: { nameToSearch: user } });
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   /// //////////////////////////////////////////////////////
@@ -108,7 +111,6 @@ const App = () => {
   };
 
   return (
-    <Router>
       <Container>
         <div>
           {(message && (
@@ -270,7 +272,6 @@ const App = () => {
           </div>
         </div>
       </Container>
-    </Router>
   );
 };
 
