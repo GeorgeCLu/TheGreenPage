@@ -1,6 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import Listings from './Listings'
@@ -16,7 +14,6 @@ const Listing = () => {
     return <div>loading...</div>
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const notify = (message: string|null) => {
     setErrorMessage(message)
     setTimeout(() => {
