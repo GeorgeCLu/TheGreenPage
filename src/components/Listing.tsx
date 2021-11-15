@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable max-len */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Listings from './Listings';
@@ -9,6 +10,7 @@ import ListingProp from '../common/listing';
 import NotifyMessage from './NotifyMessage';
 
 const Listing = () => {
+  // eslint-disable-next-line no-unused-vars
   const [errorMessage, setErrorMessage] = useState<string|null>(null);
   const result = useQuery(ALL_LISTINGS);
 
