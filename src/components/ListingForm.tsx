@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { useMutation } from '@apollo/client';
 import {
